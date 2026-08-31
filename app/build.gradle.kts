@@ -36,6 +36,7 @@ android {
 	}
 	buildFeatures {
 		compose = true
+		buildConfig = true
 	}
 }
 
@@ -92,7 +93,14 @@ dependencies {
 // Timber
 	implementation(libs.timber)
 
-// Testing
+
+	// Retrofit
+	implementation(libs.retrofit)
+	implementation(libs.retrofit.kotlinx.converter)
+	implementation(libs.okhttp)
+	implementation(libs.okhttp.logging)
+
+	// Testing
 	testImplementation(libs.kotlinx.coroutines.test)
 	testImplementation(libs.room.testing)
 	testImplementation(libs.paging.testing)
