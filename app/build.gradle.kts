@@ -17,7 +17,7 @@ android {
 	defaultConfig {
 		applicationId = "com.archi.tmpnces"
 		minSdk = 28
-		targetSdk = 36
+		targetSdk = 37
 		versionCode = 1
 		versionName = "1.0"
 		
@@ -40,6 +40,9 @@ android {
 	}
 }
 
+ksp {
+	arg("room.schemaLocation", "$projectDir/schemas")
+}
 
 dependencies {
 	implementation(libs.androidx.core.ktx)
@@ -106,4 +109,7 @@ dependencies {
 	testImplementation(libs.paging.testing)
 	testImplementation(libs.turbine)
 	testImplementation(libs.mockk)
+	androidTestImplementation(libs.room.testing)
+	androidTestImplementation(libs.kotlinx.coroutines.test)
+	androidTestImplementation(libs.turbine)
 }
