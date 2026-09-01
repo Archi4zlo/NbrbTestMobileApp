@@ -122,4 +122,21 @@ class RatesStoreTest {
 		
 		assertFalse(store.state.isLoading)
 	}
+
+	@Test
+	fun `повторное нажатие во время загрузки игнорируется`() = runTest {
+		every { observeRates(date) } returns flowOf(emptyList())
+		
+		coEvery { refreshRates(date) } coAnswers {
+			kotlinx.coroutines.awaitCancellation()
+		}
+		
+		val store = createStore()
+		
+		assertTrue(store.state.isLoading)
+		
+		repeat(5) { store.accept(RatesStore.Intent.Refresh) }
+		
+		coVerify(exactly = 1) { refreshRates(date) }
+	}
 }

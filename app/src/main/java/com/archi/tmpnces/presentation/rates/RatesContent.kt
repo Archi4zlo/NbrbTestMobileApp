@@ -22,7 +22,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.archi.tmpnces.R
+import com.archi.tmpnces.presentation.common.ErrorSnackbarEffect
 import com.archi.tmpnces.domain.model.ChangeDirection
 import com.archi.tmpnces.domain.model.RateWithChange
 import com.archi.tmpnces.presentation.common.CurrencyFlag
@@ -53,12 +53,12 @@ fun RatesContent(
 	
 	val snackbarHostState = remember { SnackbarHostState() }
 	val errorMessage = stringResource(R.string.rates_refresh_failed)
-	
-	LaunchedEffect(component) {
-		component.errors.collect {
-			snackbarHostState.showSnackbar(errorMessage)
-		}
-	}
+	ErrorSnackbarEffect(
+		errors = component.errors,
+		snackbarHostState = snackbarHostState,
+		message = errorMessage,
+		key = component,
+	)
 	
 	Scaffold(
 		modifier = modifier.fillMaxSize(), snackbarHost = { SnackbarHost(snackbarHostState) }) { padding ->

@@ -55,7 +55,9 @@ class RatesStoreFactory @Inject constructor(
 		
 		override fun executeIntent(intent: RatesStore.Intent) {
 			when (intent) {
-				RatesStore.Intent.Refresh -> refresh()
+				RatesStore.Intent.Refresh -> {
+					if (!state().isLoading) refresh()
+				}
 			}
 		}
 		

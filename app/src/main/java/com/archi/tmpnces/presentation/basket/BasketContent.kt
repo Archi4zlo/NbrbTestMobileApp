@@ -29,7 +29,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.archi.tmpnces.R
+import com.archi.tmpnces.presentation.common.ErrorSnackbarEffect
 import com.archi.tmpnces.domain.model.ComponentRate
 import com.archi.tmpnces.domain.model.CurrencyBasket
 import com.archi.tmpnces.domain.model.RubleChange
@@ -70,12 +70,12 @@ fun BasketContent(
 	
 	val snackbarHostState = remember { SnackbarHostState() }
 	val errorMessage = stringResource(R.string.basket_failed)
-	
-	LaunchedEffect(component) {
-		component.errors.collect {
-			snackbarHostState.showSnackbar(errorMessage)
-		}
-	}
+	ErrorSnackbarEffect(
+		errors = component.errors,
+		snackbarHostState = snackbarHostState,
+		message = errorMessage,
+		key = component,
+	)
 	
 	var showDatePicker by remember { mutableStateOf(false) }
 	
@@ -165,7 +165,7 @@ private fun DateSelector(
 		
 		IconButton(onClick = onPickDate) {
 			Icon(
-				painter = painterResource(R.drawable.ic_tab_chart),
+				painter = painterResource(R.drawable.ic_calendar),
 				contentDescription = stringResource(R.string.basket_pick_date)
 			)
 		}

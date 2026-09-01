@@ -54,7 +54,9 @@ class BasketStoreFactory @Inject constructor(
 		
 		override fun executeIntent(intent: BasketStore.Intent) {
 			when (intent) {
-				BasketStore.Intent.Reload -> load(state().date)
+				BasketStore.Intent.Reload -> {
+					if (!state().isLoading) load(state().date)
+				}
 				
 				is BasketStore.Intent.SelectDate -> {
 					dispatch(Msg.DateChanged(intent.date))

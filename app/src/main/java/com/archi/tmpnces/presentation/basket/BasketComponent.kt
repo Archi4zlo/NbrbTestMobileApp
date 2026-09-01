@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.serialization.builtins.serializer
 import java.time.LocalDate
 
 interface BasketComponent {
@@ -43,8 +44,17 @@ class DefaultBasketComponent @AssistedInject constructor(
 	}
 	
 	private val store = retainedStore {
-		storeFactory.create(LocalDate.now())
+		storeFactory.create(restoreDate())
 	}
+	
+	init {
+		stateKeeper.register(KEY_DATE, Long.serializer()) {
+			store.state.date.toEpochDay()
+		}
+	}
+	
+	private fun restoreDate(): LocalDate = stateKeeper.consume(KEY_DATE, Long.serializer())
+		?.let(LocalDate::ofEpochDay) ?: LocalDate.now()
 	
 	private val scope = coroutineScope(Dispatchers.Main.immediate + SupervisorJob())
 	
@@ -67,6 +77,10 @@ class DefaultBasketComponent @AssistedInject constructor(
 	
 	override fun onDateSelected(date: LocalDate) {
 		store.accept(BasketStore.Intent.SelectDate(date))
+	}
+	
+	private companion object {
+		const val KEY_DATE = "basket_selected_date"
 	}
 	
 	private fun toModel(state: BasketStore.State) = BasketComponent.Model(

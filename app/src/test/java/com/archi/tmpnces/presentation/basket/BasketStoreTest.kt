@@ -153,4 +153,20 @@ class BasketStoreTest {
 
         assertTrue(!store.state.isLoading)
     }
+
+	@Test
+	fun `повторное нажатие Вывести во время загрузки игнорируется`() = runTest {
+		every { observeBasket(today) } returns MutableSharedFlow()
+		coEvery { refreshBasket(today) } coAnswers {
+			kotlinx.coroutines.awaitCancellation()
+		}
+		
+		val store = createStore()
+		assertTrue(store.state.isLoading)
+		
+		repeat(5) { store.accept(BasketStore.Intent.Reload) }
+		
+		coVerify(exactly = 1) { refreshBasket(today) }
+	}
+
 }
