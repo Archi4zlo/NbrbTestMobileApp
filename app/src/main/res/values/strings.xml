@@ -1,3 +1,9 @@
 <resources>
-	<string name="app_name">TmpNces</string>
+	<string name="app_name">Курсы валют</string>
+	<string name="menu_title">Курсы валют</string>
+	<string name="tab_rates">Курсы BYN</string>
+	<string name="tab_basket">Корзина валют</string>
+	<string name="tab_chart">График</string>
+	<string name="back">Назад</string>
+	<string name="screen_placeholder">ждёмс дроп</string>
 </resources>

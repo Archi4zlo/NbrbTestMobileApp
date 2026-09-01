@@ -2,10 +2,12 @@ package com.archi.tmpnces.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val Brand = Color(0xFF8C1A35)
+val BrandDark = Color(0xFF6B1228)
+val BrandLight = Color(0xFFB8869B)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val RateUp = Color(0xFF1B8B3A)
+val RateDown = Color(0xFFC62828)
+
+val TableBorder = Color(0xFFE8D5DB)
+val TableHeaderText = Color(0xFFFFFFFF)
