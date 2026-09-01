@@ -7,6 +7,9 @@ data class RateWithChange(
 	val change: Double?
 		get() = previousRatePerUnit?.let { rate.ratePerUnit - it }
 	
+	val changeInQuoteUnits: Double?
+		get() = change?.let { it * rate.scale }
+	
 	val direction: ChangeDirection
 		get() {
 			val delta = change ?: return ChangeDirection.UNKNOWN

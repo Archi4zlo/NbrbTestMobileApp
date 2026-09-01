@@ -9,11 +9,24 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.serialization.Serializable
 
-class DefaultMainComponent(
-	componentContext: ComponentContext, initialTab: Tab, private val onBack: () -> Unit
+class DefaultMainComponent @AssistedInject constructor(
+	private val ratesComponentFactory: DefaultRatesComponent.Factory,
+	@Assisted componentContext: ComponentContext,
+	@Assisted private val initialTab: Tab,
+	@Assisted private val onBack: () -> Unit
 ) : MainComponent, ComponentContext by componentContext {
+	
+	@AssistedFactory
+	interface Factory {
+		fun create(
+			componentContext: ComponentContext, initialTab: Tab, onBack: () -> Unit
+		): DefaultMainComponent
+	}
 	
 	private val navigation = StackNavigation<Config>()
 	
@@ -30,7 +43,7 @@ class DefaultMainComponent(
 	): MainComponent.Child = when (config.tab) {
 		
 		Tab.RATES -> MainComponent.Child.Rates(
-			DefaultRatesComponent(componentContext)
+			ratesComponentFactory.create(componentContext)
 		)
 		
 		Tab.BASKET -> MainComponent.Child.Basket(

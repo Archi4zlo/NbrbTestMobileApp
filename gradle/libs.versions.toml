@@ -11,9 +11,9 @@ composeBom = "2026.08.00"
 ksp = "2.3.10"
 hilt = "2.60.1"
 decompose = "3.5.0"
+essenty = "2.5.0"
 mvikotlin = "4.4.0"
 room = "2.8.4"
-paging = "3.5.1"
 kotlinxSerializationJson = "1.11.0"
 coroutines = "1.11.0"
 timber = "5.0.1"
@@ -46,6 +46,7 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 # Decompose
 decompose = { group = "com.arkivanov.decompose", name = "decompose", version.ref = "decompose" }
 decompose-extensions-compose = { group = "com.arkivanov.decompose", name = "extensions-compose", version.ref = "decompose" }
+essenty-lifecycle-coroutines = { group = "com.arkivanov.essenty", name = "lifecycle-coroutines", version.ref = "essenty" }
 
 # MVIKotlin
 mvikotlin = { group = "com.arkivanov.mvikotlin", name = "mvikotlin", version.ref = "mvikotlin" }
@@ -55,14 +56,8 @@ mvikotlin-coroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-ex
 # Room
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
-
-# Paging
-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
-paging-testing = { group = "androidx.paging", name = "paging-testing", version.ref = "paging" }
 
 # Coroutines
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }

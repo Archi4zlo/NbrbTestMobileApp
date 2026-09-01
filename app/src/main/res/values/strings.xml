@@ -4,6 +4,11 @@
 	<string name="tab_rates">Курсы BYN</string>
 	<string name="tab_basket">Корзина валют</string>
 	<string name="tab_chart">График</string>
+	<string name="rates_header">Официальные курсы белорусского рубля по отношению к иностранным валютам, устанавливаемые НБ РБ ежедневно, на %1$s</string>
+	<string name="rates_refresh">ОБНОВИТЬ</string>
+	<string name="rates_empty">Курсы пока не загружены</string>
+	<string name="rates_refresh_failed">Не удалось обновить курсы. Проверьте соединение.</string>
+	<string name="rates_flag_fallback">—</string>
 	<string name="back">Назад</string>
-	<string name="screen_placeholder">ждёмс дроп</string>
+	<string name="screen_placeholder">Экран в разработке</string>
 </resources>

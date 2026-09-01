@@ -10,11 +10,20 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.serialization.Serializable
 
-class DefaultRootComponent(
-	componentContext: ComponentContext
+class DefaultRootComponent @AssistedInject constructor(
+	private val mainComponentFactory: DefaultMainComponent.Factory,
+	@Assisted componentContext: ComponentContext,
 ) : RootComponent, ComponentContext by componentContext {
+	
+	@AssistedFactory
+	interface Factory {
+		fun create(componentContext: ComponentContext): DefaultRootComponent
+	}
 	
 	private val navigation = StackNavigation<Config>()
 	
@@ -32,19 +41,18 @@ class DefaultRootComponent(
 		
 		Config.Menu -> RootComponent.Child.Menu(
 			DefaultMenuComponent(
-				componentContext = componentContext, onSectionSelected = { tab ->
-					navigation.push(Config.Main(tab))
-				}),
+				componentContext = componentContext, onSectionSelected = { tab -> navigation.push(Config.Main(tab)) }),
 		)
 		
 		is Config.Main -> RootComponent.Child.Main(
-			DefaultMainComponent(
+			mainComponentFactory.create(
 				componentContext = componentContext,
 				initialTab = config.tab,
 				onBack = navigation::pop,
 			)
 		)
 	}
+	
 	@Serializable
 	private sealed interface Config {
 		

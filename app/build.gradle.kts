@@ -68,6 +68,7 @@ dependencies {
 // Decompose
 	implementation(libs.decompose)
 	implementation(libs.decompose.extensions.compose)
+	implementation(libs.essenty.lifecycle.coroutines)
 
 // MVIKotlin
 	implementation(libs.mvikotlin)
@@ -77,12 +78,7 @@ dependencies {
 // Room
 	implementation(libs.room.runtime)
 	implementation(libs.room.ktx)
-	implementation(libs.room.paging)
 	ksp(libs.room.compiler)
-
-// Paging
-	implementation(libs.paging.runtime)
-	implementation(libs.paging.compose)
 
 // Coroutines
 	implementation(libs.kotlinx.coroutines.android)
@@ -106,7 +102,6 @@ dependencies {
 	// Testing
 	testImplementation(libs.kotlinx.coroutines.test)
 	testImplementation(libs.room.testing)
-	testImplementation(libs.paging.testing)
 	testImplementation(libs.turbine)
 	testImplementation(libs.mockk)
 	androidTestImplementation(libs.room.testing)
