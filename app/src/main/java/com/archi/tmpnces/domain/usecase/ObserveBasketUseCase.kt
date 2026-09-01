@@ -65,7 +65,8 @@ class ObserveBasketUseCase @Inject constructor(
 	
 	private fun rubleChange(now: Double, base: Double?): RubleChange? {
 		if (base == null || base == 0.0) return null
-		return RubleChange(-((now - base) / base) * 100.0)
+		val percent = -((now - base) / base) * 100.0
+		return RubleChange(if (percent == 0.0) 0.0 else percent)
 	}
 	
 	companion object {

@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import java.time.LocalDate
@@ -202,5 +203,30 @@ class ObserveBasketUseCaseTest {
 		assertEquals(
 			listOf("RUB" to 0.6, "USD" to 0.3, "CNY" to 0.1), ObserveBasketUseCase.WEIGHTS
 		)
+	}
+	
+	@Test
+	fun `при неизменном курсе процент равен нулю без знака минус`() = runTest {
+		val sameRates = listOf(
+			rate("RUB", "Российский рубль", 1, 252.38),
+			rate("USD", "Доллар США", 1, 15248.00),
+			rate("CNY", "Китайский юань", 1, 2455.53)
+		)
+		stub(
+			current = sameRates,
+			previous = sameRates.map { it.copy(date = previousDay) }
+		)
+		
+		useCase(date).test {
+			val basket = awaitItem()!!
+			
+			basket.components.forEach { component ->
+				val percent = component.sincePreviousDay!!.percent
+				assertEquals(0.0, percent, 0.0)
+				assertTrue("Получен отрицательный ноль", 1.0 / percent > 0)
+			}
+			
+			awaitComplete()
+		}
 	}
 }

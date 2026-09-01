@@ -1,14 +1,34 @@
 <resources>
 	<string name="app_name">Курсы валют</string>
 	<string name="menu_title">Курсы валют</string>
+
 	<string name="tab_rates">Курсы BYN</string>
 	<string name="tab_basket">Корзина валют</string>
 	<string name="tab_chart">График</string>
+
 	<string name="rates_header">Официальные курсы белорусского рубля по отношению к иностранным валютам, устанавливаемые НБ РБ ежедневно, на %1$s</string>
 	<string name="rates_refresh">ОБНОВИТЬ</string>
 	<string name="rates_empty">Курсы пока не загружены</string>
 	<string name="rates_refresh_failed">Не удалось обновить курсы. Проверьте соединение.</string>
 	<string name="rates_flag_fallback">—</string>
+
+	<string name="basket_header">Официальные курсы белорусского рубля по отношению к иностранным валютам и стоимость корзины иностранных валют на %1$s</string>
+	<string name="basket_date_label">На дату:</string>
+	<string name="basket_show">Вывести</string>
+	<string name="basket_pick_date">Выбрать дату</string>
+	<string name="basket_explanation">Стоимость корзины валют рассчитывается как среднее геометрическое взвешенное двусторонних курсов белорусского рубля к российскому рублю (RUB), доллару США (USD), китайскому юаню (CNY) за 1 единицу иностранной валюты с весами 0,6, 0,3 и 0,1 соответственно, т.е. стоимость корзины валют рассчитывается как произведение значений курсов белорусского рубля к российскому рублю в степени 0,6, к доллару США в степени 0,3 и к китайскому юаню в степени 0,1.</string>
+	<string name="basket_col_currency">Курс белорусского рубля</string>
+	<string name="basket_col_rate">Официальный курс</string>
+	<string name="basket_col_year">Изменение к 31.12.%1$d, %%</string>
+	<string name="basket_col_prev">Изменение к предыдущему дню, %%</string>
+	<string name="basket_row_title">корзина валют</string>
+	<string name="basket_legend">Символом ▲ обозначается укрепление белорусского рубля, символом ▼ — ослабление белорусского рубля.</string>
+	<string name="basket_empty">Нет данных на выбранную дату</string>
+	<string name="basket_failed">Не удалось загрузить данные. Проверьте соединение.</string>
+
+	<string name="dialog_ok">ОК</string>
+	<string name="dialog_cancel">Отмена</string>
+
 	<string name="back">Назад</string>
 	<string name="screen_placeholder">Экран в разработке</string>
 </resources>
