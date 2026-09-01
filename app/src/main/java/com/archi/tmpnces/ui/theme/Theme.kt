@@ -14,12 +14,15 @@ private val LightColors = lightColorScheme(
 	onPrimaryContainer = Color.White,
 	secondary = BrandDark,
 	onSecondary = Color.White,
+	secondaryContainer = BrandSoft,
+	onSecondaryContainer = Brand,
 	background = Color.White,
 	onBackground = Color(0xFF1C1B1F),
 	surface = Color.White,
 	onSurface = Color(0xFF1C1B1F),
 	surfaceVariant = Color(0xFFF7F2F3),
-	onSurfaceVariant = Color(0xFF4A4247)
+	onSurfaceVariant = Color(0xFF4A4247),
+	surfaceContainer = Color(0xFFF9F4F5),
 )
 
 private val DarkColors = darkColorScheme(
@@ -28,17 +31,20 @@ private val DarkColors = darkColorScheme(
 	primaryContainer = BrandDark,
 	onPrimaryContainer = Color.White,
 	secondary = BrandLight,
-	onSecondary = Color(0xFF3A0A16)
+	onSecondary = Color(0xFF3A0A16),
+	secondaryContainer = Color(0xFF4A1524),
+	onSecondaryContainer = BrandLight,
+	surfaceContainer = Color(0xFF241A1D)
 )
 
 @Composable
 fun TmpNcesTheme(
 	darkTheme: Boolean = isSystemInDarkTheme(),
-	content: @Composable () -> Unit
+	content: @Composable () -> Unit,
 ) {
 	MaterialTheme(
 		colorScheme = if (darkTheme) DarkColors else LightColors,
 		typography = Typography,
-		content = content
+		content = content,
 	)
 }

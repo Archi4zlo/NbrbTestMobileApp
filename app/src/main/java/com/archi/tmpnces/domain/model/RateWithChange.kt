@@ -12,16 +12,16 @@ data class RateWithChange(
 	
 	val direction: ChangeDirection
 		get() {
-			val delta = change ?: return ChangeDirection.UNKNOWN
+			val delta = changeInQuoteUnits ?: return ChangeDirection.UNKNOWN
 			return when {
-				delta > CHANGE_EPSILON -> ChangeDirection.UP
-				delta < -CHANGE_EPSILON -> ChangeDirection.DOWN
+				delta > DISPLAY_THRESHOLD -> ChangeDirection.UP
+				delta < -DISPLAY_THRESHOLD -> ChangeDirection.DOWN
 				else -> ChangeDirection.UNCHANGED
 			}
 		}
 	
 	private companion object {
-		const val CHANGE_EPSILON = 1e-6
+		const val DISPLAY_THRESHOLD = 0.00005
 	}
 }
 

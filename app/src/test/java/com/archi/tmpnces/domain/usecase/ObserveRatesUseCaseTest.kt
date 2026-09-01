@@ -190,4 +190,21 @@ class ObserveRatesUseCaseTest {
 			awaitComplete()
 		}
 	}
+
+	@Test
+	fun `валюта с большим scale не считается неизменившейся`() = runTest {
+		stubRepository(
+			current = listOf(rate(abbreviation = "VND", name = "Донгов", scale = 100000, officialRate = 11.7476)),
+			previous = listOf(rate(date = yesterday, abbreviation = "VND", name = "Донгов", scale = 100000, officialRate = 11.7280))
+		)
+		
+		useCase(today).test {
+			val item = awaitItem().single()
+			
+			assertEquals(0.0196, item.changeInQuoteUnits!!, 1e-9)
+			assertEquals(ChangeDirection.UP, item.direction)
+			
+			awaitComplete()
+		}
+	}
 }
