@@ -17,6 +17,7 @@ import kotlinx.serialization.Serializable
 class DefaultMainComponent @AssistedInject constructor(
 	private val ratesComponentFactory: DefaultRatesComponent.Factory,
 	private val basketComponentFactory: DefaultBasketComponent.Factory,
+	private val chartComponentFactory: DefaultChartComponent.Factory,
 	@Assisted componentContext: ComponentContext,
 	@Assisted private val initialTab: Tab,
 	@Assisted private val onBack: () -> Unit
@@ -52,7 +53,7 @@ class DefaultMainComponent @AssistedInject constructor(
 		)
 		
 		Tab.CHART -> MainComponent.Child.Chart(
-			DefaultChartComponent(componentContext)
+			chartComponentFactory.create(componentContext)
 		)
 	}
 	

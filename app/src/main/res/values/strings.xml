@@ -31,4 +31,14 @@
 
 	<string name="back">Назад</string>
 	<string name="screen_placeholder">Экран в разработке</string>
+
+	<string name="chart_period_week">Неделя</string>
+	<string name="chart_period_month">Месяц</string>
+	<string name="chart_period_quarter">Квартал</string>
+	<string name="chart_title">Курс %s НБ РБ</string>
+	<string name="chart_today">На сегодня</string>
+	<string name="chart_dynamics_label">Динамика курса %s НБ РБ</string>
+	<string name="chart_failed">Не удалось загрузить данные. Проверьте соединение.</string>
+	<string name="chart_no_data">Нет данных за выбранный период</string>
+	<string name="chart_reload">Повторить</string>
 </resources>
