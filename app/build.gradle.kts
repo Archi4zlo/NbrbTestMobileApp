@@ -34,6 +34,11 @@ android {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
 	}
+	
+	sourceSets {
+		getByName("androidTest").assets.srcDirs("$projectDir/schemas")
+	}
+	
 	buildFeatures {
 		compose = true
 		buildConfig = true

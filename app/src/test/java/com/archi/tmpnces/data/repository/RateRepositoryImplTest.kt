@@ -3,6 +3,7 @@ package com.archi.tmpnces.data.repository
 import app.cash.turbine.test
 import com.archi.tmpnces.core.util.Result
 import com.archi.tmpnces.data.local.dao.RateDao
+import com.archi.tmpnces.data.local.dao.RateDynamicsDao
 import com.archi.tmpnces.data.local.entity.RateEntity
 import com.archi.tmpnces.data.remote.NbrbApiService
 import com.archi.tmpnces.data.remote.dto.RateDto
@@ -23,6 +24,7 @@ class RateRepositoryImplTest {
 	
 	private lateinit var api: NbrbApiService
 	private lateinit var dao: RateDao
+	private lateinit var dynamicsDao: RateDynamicsDao
 	private lateinit var repository: RateRepositoryImpl
 	
 	private val date = LocalDate.of(2026, 8, 31)
@@ -56,7 +58,8 @@ class RateRepositoryImplTest {
 	fun setUp() {
 		api = mockk()
 		dao = mockk(relaxed = true)
-		repository = RateRepositoryImpl(api, dao)
+		dynamicsDao = mockk(relaxed = true)
+		repository = RateRepositoryImpl(api, dao, dynamicsDao)
 	}
 	
 	@Test

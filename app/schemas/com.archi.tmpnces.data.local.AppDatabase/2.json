@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "d0f2192df26351d63ccb313192a44cea",
+    "entities": [
+      {
+        "tableName": "rates",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `curId` INTEGER NOT NULL, `abbreviation` TEXT NOT NULL, `name` TEXT NOT NULL, `scale` INTEGER NOT NULL, `officialRate` REAL NOT NULL, PRIMARY KEY(`date`, `curId`))",
+        "fields": [
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "curId",
+            "columnName": "curId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "abbreviation",
+            "columnName": "abbreviation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scale",
+            "columnName": "scale",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialRate",
+            "columnName": "officialRate",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "date",
+            "curId"
+          ]
+        }
+      },
+      {
+        "tableName": "rate_dynamics",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`curId` INTEGER NOT NULL, `date` TEXT NOT NULL, `officialRate` REAL NOT NULL, PRIMARY KEY(`curId`, `date`))",
+        "fields": [
+          {
+            "fieldPath": "curId",
+            "columnName": "curId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialRate",
+            "columnName": "officialRate",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "curId",
+            "date"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd0f2192df26351d63ccb313192a44cea')"
+    ]
+  }
+}
